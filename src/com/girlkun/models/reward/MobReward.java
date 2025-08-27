@@ -2,6 +2,10 @@ package com.girlkun.models.reward;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.girlkun.models.map.ItemMap;
+import com.girlkun.models.player.Player;
+
 import lombok.Data;
 
 
@@ -18,10 +22,16 @@ public class MobReward {
         this.itemReward = new ArrayList<>();
         this.goldReward = new ArrayList<>();
     }
+
+    public List<ItemMobReward> getGoldReward() {
+        return this.goldReward;
+    }
+
+    public List<ItemMobReward> getItemReward() {
+        return this.itemReward;
+    }
+
 }
-
-
-
 
 
 
