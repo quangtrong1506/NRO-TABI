@@ -1,11 +1,11 @@
 package com.girlkun.utils;
 
-import java.util.List;
+import com.girlkun.models.Template.SkillTemplate;
 import com.girlkun.models.player.Player;
 import com.girlkun.models.skill.NClass;
 import com.girlkun.models.skill.Skill;
-import com.girlkun.models.Template.SkillTemplate;
 import com.girlkun.server.Manager;
+import java.util.List;
 
 
 public class SkillUtil {

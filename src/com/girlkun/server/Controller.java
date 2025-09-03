@@ -832,14 +832,14 @@ public class Controller implements IMessageHandler {
 
         if (TaskService.gI().getIdTask(player) == ConstTask.TASK_0_0) {
             NpcService.gI().createTutorial(player, -1,
-                    "Chào mừng " + player.name + " đến với Ngọc rồng online server Tabi\n"
+                    "Chào mừng " + player.name + " đến với Ngọc rồng online\n"
                     + "Nhiệm vụ đầu tiên của bạn là di chuyển\n"
                     + "Bạn hãy di chuyển nhân vật theo mũi tên chỉ hướng");
         } else {
-            NpcService.gI().createTutorial(player, -1,
-                    "Chào mừng " + player.name + " đến với Ngọc rồng online server Tabi\n"
-                    + " Để hiểu rõ về cơ chế cũng như xem Giftcode Máy chủ Server Tabi vui lòng bấm vào mục Chức năng -> Thông báo\n"
-                    + "Chúc anh em chơi game vui vẻ");
+            // NpcService.gI().createTutorial(player, -1,
+            //         "Chào mừng " + player.name + " đến với Ngọc rồng online\n"
+            //         + " Để hiểu rõ về cơ chế cũng như xem Giftcode Máy chủ Server Tabi vui lòng bấm vào mục Chức năng -> Thông báo\n"
+            //         + "Chúc anh em chơi game vui vẻ");
         }
         if (GoiRongXuong.gI().playerRongXuong != null
                 && GoiRongXuong.gI().playerRongXuong.id == player.id) {
@@ -915,7 +915,7 @@ public class Controller implements IMessageHandler {
     }
 
     private void sendThongBaoServer(Player player) {
-        Service.getInstance().sendThongBaoFromAdmin(player, "|5| Ngọc rồng Tabi\n|6| Chào mừng bạn đến với Ngọc rồng Tabi\n"
+        Service.getInstance().sendThongBaoFromAdmin(player, "|5| Ngọc rồng\n|6| Chào mừng bạn đến với Ngọc rồng\n"
                 + "Server với nhiều tính năng phù hợp cho anh em cày cuốc lâu dài\n|1| Chúc mọi người chơi Game vui vẻ !!!");
     }
 

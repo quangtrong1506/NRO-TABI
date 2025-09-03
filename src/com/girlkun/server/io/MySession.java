@@ -156,7 +156,7 @@ public class MySession extends Session {
         }
         if (!this.isAdmin && Client.gI().getPlayers().size() >= Manager.MAX_PLAYER) {
             Service.getInstance().sendThongBaoOK(this, "Máy chủ hiện đang quá tải, "
-                    + "cư dân vui lòng di chuyển sang máy chủ khác.");
+                    + "Vui lòng thử lại sau");
             return;
         }
         if (this.player != null) {

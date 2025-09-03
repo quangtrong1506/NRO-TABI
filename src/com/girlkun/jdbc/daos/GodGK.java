@@ -95,7 +95,7 @@ public class GodGK {
                     return null;
                 }
                 if (rs.getBoolean("ban")) {
-                    Service.getInstance().sendThongBaoOK(session, "Tài khoản của bạn đã bị khóa. Lý do : Clone trên 5 acc !!!");
+                    Service.getInstance().sendThongBaoOK(session, "Tài khoản của bạn đã bị khóa");
                 } else if (baotri && session.isAdmin) {
                     Service.getInstance().sendThongBaoOK(session, "Máy chủ đang bảo trì, vui lòng quay lại sau!");
                 } else if (secondsPass1 < Manager.SECOND_WAIT_LOGIN) {
@@ -129,8 +129,8 @@ public class GodGK {
                             if (plInGame != null) {
                                 Client.gI().kickSession(plInGame.getSession());
                             }
-                            int plHp = 200000000;
-                            int plMp = 200000000;
+                            int plHp = 1;
+                            int plMp = 1;
                             JSONValue jv = new JSONValue();
                             JSONArray dataArray = null;
 
@@ -139,7 +139,9 @@ public class GodGK {
                             //base info
                             player.id = rs.getInt("id");
                             player.vnd = rs.getInt("vnd");
-                            if (player.vnd >= 500000 && player.vnd < 1000000) {
+                            if (session.isAdmin) {
+                                player.name = "[Admin] " + rs.getString("name");
+                            }else if (player.vnd >= 500000 && player.vnd < 1000000) {
                                 player.name = "[VIP] " + rs.getString("name");
                             }else if (player.vnd >= 1000000) {
                                 player.name = "[SVIP] " + rs.getString("name");
@@ -571,15 +573,19 @@ public class GodGK {
                                 int tempId = Integer.parseInt(String.valueOf(dataSkill.get(0)));
                                 byte point = Byte.parseByte(String.valueOf(dataSkill.get(1)));
                                 Skill skill = null;
-                                if (point != 0) {
+                                if (point > 0) {
                                     skill = SkillUtil.createSkill(tempId, point);
+                                    skill.lastTimeUseThisSkill = Long.parseLong(String.valueOf(dataSkill.get(2)));
+                                    if (dataSkill.size() > 3) {
+                                        skill.currLevel = Short.parseShort(String.valueOf(dataSkill.get(3)));
+                                    }
                                 } else {
                                     skill = SkillUtil.createSkillLevel0(tempId);
+                                    skill.skillId = (short) tempId;
+                                    skill.currLevel = (short) 1;
                                 }
-                                skill.lastTimeUseThisSkill = Long.parseLong(String.valueOf(dataSkill.get(2)));
-                                if (dataSkill.size() > 3) {
-                                    skill.currLevel = Short.parseShort(String.valueOf(dataSkill.get(3)));
-                                }
+                                
+                                
                                 player.playerSkill.skills.add(skill);
                             }
                             dataArray.clear();
@@ -650,7 +656,6 @@ public class GodGK {
                                         }
                                     } else {
                                         item = ItemService.gI().createItemNull();
-                                        ;
                                     }
                                     pet.inventory.itemsBody.add(item);
                                 }
